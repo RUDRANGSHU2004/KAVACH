@@ -37,13 +37,17 @@ Features:
 
 Tech Stack:
 
-Voice activated spy Pendent system, Activates camera and sound recording, the ESP 32 camera records and stores the video in jpg format in a memory chip which can be collected and used for evidence.
+Voice Recognition Module
+ESP32 Cam Module
+Voice Recorder Module
+GPS Ublox NEO 6m Module
+SIM800L GPRS GSM Module
+NRF24L01 2.4GHz Wireless Transceiver Module
+Spark Generator Module
 
-GPS, GSM system activated using the same voice command, both GPS and GSM are connected to the same microcontroller, the Node MCU microprocessor chip(ESP8266) gets the location info by 3 satellite locking GPS module and transmits it through the GSM module using their respective data lines.
+IDE used :- Arduino Ide
+Coding Format :- C Language
 
-The GPS module generates the location info in the form of latitude and longitude which is processed by the GSM module and is sent through the communication lines to the receivers device in the form of an SMS message with Google map link. The real time location of the user is constantly sent through the SMS every 30 seconds as encoded in the processor which can be changed as well. 
-
-For Extended protection a wearable high voltage teaser is added which provides the user a means of defending themselves if necessary, every component is designed to activate wirelessly with a single voice command.
 
 
 Run Instructions:
