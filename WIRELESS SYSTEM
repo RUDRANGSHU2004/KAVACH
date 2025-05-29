@@ -1,0 +1,79 @@
+//RECEIVER
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
+#define led1 A0  
+#define led2 A1  
+int buttonState = 0;
+RF24 radio(9, 8); 
+const byte address[6] = "00001";
+void setup() {
+  Serial.begin(9600);
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  digitalWrite(led1, HIGH);
+  digitalWrite(led2, HIGH);
+  radio.begin();
+  radio.openReadingPipe(0, address);
+  radio.setPALevel(RF24_PA_MIN);
+  radio.startListening();
+}
+void loop() {
+  if (radio.available()) {
+    radio.read(&buttonState, sizeof(buttonState));
+    Serial.println(buttonState);
+    if (buttonState == 1) {
+      digitalWrite(led1, LOW);
+    } else if (buttonState == 0) {
+      digitalWrite(led1, HIGH); 
+    } else if (buttonState == 3) {
+      digitalWrite(led2, LOW);  
+    } else if (buttonState == 2) {
+      digitalWrite(led2, HIGH); 
+    }
+  }
+}
+//TRANSMITTER
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
+#define buttonPin1 3  
+#define buttonPin2 4   
+int buttonState1 = 0;
+int buttonState2 = 0;
+RF24 radio(9, 8); 
+const byte addresses[][6] = {"00001", "00002"};
+void setup() {
+  pinMode(buttonPin1, INPUT_PULLUP);
+  pinMode(buttonPin2, INPUT_PULLUP);
+  Serial.begin(9600);
+  radio.begin();
+  radio.setPALevel(RF24_PA_MIN);
+}
+void loop() {
+  buttonState1 = digitalRead(buttonPin1);
+  buttonState2 = digitalRead(buttonPin2);
+  buttonState1 = (buttonState1 == HIGH) ? 1 : 0;
+  buttonState2 = (buttonState2 == HIGH) ? 3 : 2;
+  radio.openWritingPipe(addresses[0]);
+  radio.stopListening();
+  bool success1 = radio.write(&buttonState1, sizeof(buttonState1));
+  if (success1) {
+    Serial.println("Sent to Receiver 1");
+  } else {
+    Serial.println("Failed to send to Receiver 1");
+  }
+  delay(100);
+  radio.openWritingPipe(addresses[1]);
+  radio.stopListening();
+  bool success2 = radio.write(&buttonState2, sizeof(buttonState2));
+  if (success2) {
+    Serial.println("Sent to Receiver 2");
+  } else {
+    Serial.println("Failed to send to Receiver 2");
+  }
+  delay(100);
+}
+//LIBRARIES
+nrf24
+//PIN DIAGRAM
