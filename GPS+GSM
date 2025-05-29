@@ -1,0 +1,51 @@
+#include <SoftwareSerial.h>
+#include <TinyGPS.h>
+SoftwareSerial sgps(4, 5);
+SoftwareSerial sgsm(7, 9);
+TinyGPS gps;
+float gpslat, gpslon;
+void setup() {
+  Serial.begin(9600);
+  sgsm.begin(115200);
+  sgps.begin(9600);
+  delay(1000); 
+}
+void loop() {
+  while (sgps.available()) {
+    int c = sgps.read();
+    if (gps.encode(c)) {
+      gps.f_get_position(&gpslat, &gpslon);
+    }
+  }
+  if (gpslat != 0.0 && gpslon != 0.0) {
+    sgsm.listen();
+    sendSMS();
+    delay(5000);
+  } else {
+    Serial.println("Waiting for GPS fix...");
+    delay(1000);
+  }
+}
+void sendSMS() {
+  sgsm.print("AT+CMGF=1\r");
+  delay(1000);
+  sgsm.print("AT+CMGS=\"+91\"\r");
+  delay(1000);
+  String googleMapsURL = "https://www.google.com/maps?q=" + String(gpslat, 6) + "," + String(gpslon, 6);
+  sgsm.print("Check my location: ");
+  sgsm.println(googleMapsURL);
+  delay(1000);
+  sgsm.write(0x1A);
+  delay(1000);
+  Serial.println("Location SMS sent with Google Maps link!");
+}
+//LIBRARIES
+//TinyGps
+//TinyGpsPlus
+//PIN CONFIGURATION
+//GSM RX- D7
+//GSM TX- D8 
+//Vin - 5v
+//GPS RX- D0
+//GPS TX- D1
+//Vin - 5v
