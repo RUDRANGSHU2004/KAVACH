@@ -75,5 +75,4 @@ void loop() {
   delay(100);
 }
 //LIBRARIES
-nrf24
-//PIN DIAGRAM
+RF24
