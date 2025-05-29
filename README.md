@@ -37,13 +37,13 @@ Features:
 
 Tech Stack:
 
-Voice Recognition Module
-ESP32 Cam Module
-Voice Recorder Module
-GPS Ublox NEO 6m Module
-SIM800L GPRS GSM Module
-NRF24L01 2.4GHz Wireless Transceiver Module
-Spark Generator Module
+Voice Recognition Module,
+ ESP32 Cam Module,
+ Voice Recorder Module,
+ GPS Ublox NEO 6m Module,
+ SIM800L GPRS GSM Module,
+ NRF24L01 2.4GHz Wireless Transceiver Module,
+ Spark Generator Module
 
 IDE used :- Arduino Ide
 Coding Format :- C Language
