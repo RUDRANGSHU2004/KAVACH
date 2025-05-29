@@ -1,1 +1,109 @@
+#include "DFRobot_DF2301Q.h"
+#define Led1 2
+#define Led2 3
+#define Led3 4
+#if (defined(ARDUINO_AVR_UNO) || defined(ESP8266))  
+SoftwareSerial softSerial
+DFRobot_DF2301Q_UART asr
+#elif defined(ESP32)  
+DFRobot_DF2301Q_UART asr
+#else                 
+DFRobot_DF2301Q_UART asr(/hardSerial =/&Serial1);
+#endif
+void setup() {
+  Serial.begin(115200);
+  pinMode(Led1, OUTPUT);    
+  digitalWrite(Led1, LOW);  
+  pinMode(Led2, OUTPUT);    
+  digitalWrite(Led2, LOW);
+  pinMode(Led3, OUTPUT);    
+  digitalWrite(Led3, LOW);  
+  while (!(asr.begin())) {
+    //asr.begin();
+    delay(300);
+  }
 
+  //Serial.println("Begin ok!");
+  asr.playByCMDID(23);
+}
+void loop() {
+  uint8_t CMDID = asr.getCMDID();
+  switch (CMDID) {
+    case 103:                                                  
+      digitalWrite(Led1, HIGH);                                
+      digitalWrite(Led2, HIGH);
+      digitalWrite(Led3, HIGH);                                 
+      break;
+    case 104:                                                  
+      digitalWrite(Led1, LOW);                                 
+      digitalWrite(Led2, LOW);
+      digitalWrite(Led3, LOW);                                 
+      break;  
+    case 5: 
+      digitalWrite(Led1, LOW);                                 
+      digitalWrite(Led2, LOW);
+      digitalWrite(Led3, LOW);                                   
+      delay(250);                                             
+      digitalWrite(Led1, HIGH);  
+      delay(250);                               
+      digitalWrite(Led2, HIGH);
+      delay(250);
+      digitalWrite(Led3, HIGH);
+      delay(250);                                                           
+      break;
+    case 6:                                                  
+      digitalWrite(Led1, HIGH);                                 
+      digitalWrite(Led2, HIGH);
+      digitalWrite(Led3, HIGH);                                    
+      delay(250);                                             
+      digitalWrite(Led1, LOW);  
+      delay(250);                               
+      digitalWrite(Led2, LOW);
+      delay(250);
+      digitalWrite(Led3, LOW);
+      delay(250);                                
+      break; 
+    case 7:                                                  
+      digitalWrite(Led1, HIGH);
+      break;
+    case 8:
+      digitalWrite(Led1, LOW); 
+      break;                             
+    case 9:                                                 
+      digitalWrite(Led2, HIGH);
+      break;
+    
+    case 11:
+      digitalWrite(Led2, LOW);  
+      break;                            
+    case 10:                                                  
+      digitalWrite(Led3, HIGH);
+      break;
+    case 12:
+      digitalWrite(Led3, LOW);
+      break;                              
+    case 13:                                                
+      for (int i = 0; i < 10; i++) {
+        int delay_time = 25 * i;
+        digitalWrite(Led1, LOW);                                 
+        digitalWrite(Led2, LOW);
+        digitalWrite(Led3, LOW);                                   
+        delay(delay_time);                                             
+        digitalWrite(Led1, HIGH);  
+        delay(delay_time);                               
+        digitalWrite(Led2, HIGH);
+        delay(delay_time);
+        digitalWrite(Led3, HIGH);
+        delay(delay_time);                                
+      }              
+      break;                
+    default:
+      if (CMDID != 0) {
+        Serial.print("CMDID = ");
+        Serial.println(CMDID);
+      }
+  }
+  delay(300);
+}
+//libraries
+//DFRobot
