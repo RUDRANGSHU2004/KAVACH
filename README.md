@@ -6,6 +6,7 @@ Problem Statement:
 PUBLIC SAFETY AND DEFENCE
 
 Solution and approach:
+
 A solution to public safety is to ensure that people start realising their responsibility to protect themselves ann their loved ones and our project focuses on protecting the people around the world.
 STEPS to successfull completion
 Step 1: Voice command activation(when given a pre set vword the whole system activates)
