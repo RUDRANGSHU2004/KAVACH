@@ -3,18 +3,16 @@ A PROJECT CREATED BY TECH MASTERS
 
 Problem Statement:
 
-########################
-
-
-
+PUBLIC SAFETY AND DEFENCE
 
 Solution and approach:
-
-#############################
-
-
-
-
+A solution to public safety is to ensure that people start realising their responsibility to protect themselves ann their loved ones and our project focuses on protecting the people around the world.
+STEPS to successfull completion
+Step 1: Voice command activation(when given a pre set vword the whole system activates)
+Step 2: Camera and voice recorder captures surroundings and audio
+Step 3: Nrf module transmits the signal from the one transmitter to the reciever which starts the below steps
+Step 4: Automatic GPS tracking and GSM alert(your location along with an sos is sent to your saved contacts and nearby police statio)
+Step 5: Shock and pepper spray modules are deployed for self-defense
 
 Features:
 
@@ -52,5 +50,5 @@ Coding Format :- C Language
 
 Run Instructions:
 
-A pre encoded activate command is present which can be used to activate the entire system, and it can be changed using voice prompts. The camera starts recording, the GPS module starts locking the satellites to gain location and the GSM module sends that location info through the SMS services to receiver's device. 
+A pre encoded activate command is present which can be used to activate the entire system, and it can be changed using voice prompts. The camera starts recording, the GPS module starts locking the satellites to gain location and the GSM module sends that location info through the SMS services to receiver's device. A SPARK GENERATOR and a PEPPER SPRAY is also built so that self defence can also be used.
 
