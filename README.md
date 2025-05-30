@@ -8,11 +8,16 @@ PUBLIC SAFETY AND DEFENCE
 Solution and approach:
 
 A solution to public safety is to ensure that people start realising their responsibility to protect themselves ann their loved ones and our project focuses on protecting the people around the world.
+
 STEPS to successfull completion
 Step 1: Voice command activation(when given a pre set vword the whole system activates)
+
 Step 2: Camera and voice recorder captures surroundings and audio
+
 Step 3: Nrf module transmits the signal from the one transmitter to the reciever which starts the below steps
+
 Step 4: Automatic GPS tracking and GSM alert(your location along with an sos is sent to your saved contacts and nearby police statio)
+
 Step 5: Shock and pepper spray modules are deployed for self-defense
 
 Features:
